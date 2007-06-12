@@ -23,7 +23,7 @@
 
 # theese two never change, they are used to fool rpm/urpmi/smart
 %define fakever		1
-%define fakerel		%mkrel 1
+%define fakerel		%mkrel 2
 
 # When we are using a pre/rc patch, the tarball is a sublevel -1
 %if %kpatch
@@ -45,7 +45,11 @@
 %define buildrel        %{kversion}-%{buildrpmrel}
 
 %define kerrighed_notice NOTE: This kernel is built with kerrighed support.\
-It has no Mandriva patches and no third-party drivers.
+It has no Mandriva patches and no third-party drivers. \
+Kerrighed is a Single System Image operating system for clusters. \
+Kerrighed offers the view of a unique SMP machine on top of a cluster \
+of standard PCs. \
+See http://www.kerrighed.org/ for more information about Kerrighed.
 
 # having different top level names for packges means that you have to remove them by hard :(
 %define top_dir_name    %{kname}-%{_arch}
@@ -134,7 +138,7 @@ It has no Mandriva patches and no third-party drivers.
 %define target_arch	%(echo %{_arch} | sed -e "s/amd64/x86_64/" -e "s/sparc/%{_target_cpu}/")
 
 # src.rpm description
-Summary: 	The Linux kernel (the core of the Linux operating system)
+Summary: 	The Linux kernel (the core of the Linux operating system) with Kerrighed support
 Name:           %{kname}
 Version:        %{kversion}
 Release:        %{rpmrel}
@@ -143,7 +147,6 @@ Group: 		System/Kernel and hardware
 ExclusiveArch: 	%{ix86} alpha ppc powerpc ia64 x86_64 amd64 sparc sparc64
 ExclusiveOS: 	Linux
 URL: 		http://www.kernel.org/
-Provides:	kerrighed-kernel = %{kerrighed_version}
 
 ####################################################################
 #
@@ -202,7 +205,7 @@ Patch203: 004_kerrighed.bz2
 %endif
 %define requires4 sysfsutils module-init-tools >= 0.9.15
 
-%define kprovides kernel = %{tar_ver}, alsa
+%define kprovides kernel = %{tar_ver}, alsa, kernel-kerrighed = %{kerrighed_version}
 
 BuildRoot: 	%{_tmppath}/%{name}-%{kversion}-build
 Autoreqprov: 	no
@@ -220,7 +223,7 @@ Source package to build the Linux kernel.
 %package -n %{kname}-%{buildrel}
 Version:	%{fakever}
 Release:	%{fakerel}
-Summary: 	The Linux kernel (the core of the Linux operating system)
+Summary: 	The Linux kernel (the core of the Linux operating system) with Kerrighed support
 Group: 	  	System/Kernel and hardware
 Provides: 	module-info, %kprovides
 Requires: 	%requires1
@@ -428,7 +431,7 @@ Version:  %{fakever}
 Release:  %{fakerel}
 Provides: %{kname}-source, kernel-source
 Requires: glibc-devel, ncurses-devel, make, gcc, perl
-Summary:  The source code for the Linux kernel
+Summary:  The source code for the Linux kernel with Kerrighed
 Group:    Development/Kernel
 Autoreqprov: no
 Conflicts: %{kname}-source-stripped-%{buildrel}
@@ -452,7 +455,7 @@ Release:  %{fakerel}
 Provides: %{kname}-source, kernel-source
 Provides: %{kname}-source-2.%{major}
 Requires: glibc-devel, ncurses-devel, make, gcc, perl
-Summary:  The source code of the Linux kernel stripped for post build
+Summary:  The source code of the Linux kernel with Kerrighed stripped for post build
 Group:    Development/Kernel
 Autoreqprov: no
 Conflicts: %{kname}-source-%{buildrel}

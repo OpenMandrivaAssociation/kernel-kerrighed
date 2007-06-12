@@ -41,7 +41,7 @@
 %define kverrel   	%{kversion}-%{rpmrel}
 
 # used for not making too long names for rpms or search paths
-%define buildrpmrel     %{mdvrelease}%{rpmtag}
+%define buildrpmrel	krg%{kerrighed_version}-%{mdvrelease}%{rpmtag}
 %define buildrel        %{kversion}-%{buildrpmrel}
 
 %define kerrighed_notice NOTE: This kernel is built with kerrighed support.\
@@ -1076,7 +1076,7 @@ done
 
 pushd %{target_modules}
 for i in *; do
-	/sbin/depmod-25 -u -ae -b %{buildroot} -r -F %{target_boot}/System.map-$i $i
+	/sbin/depmod -u -ae -b %{buildroot} -r -F %{target_boot}/System.map-$i $i
 	echo $?
 done
 
@@ -1084,7 +1084,7 @@ for i in *; do
 	pushd $i
 	echo "Creating module.description for $i"
 	modules=`find . -name "*.ko.gz"`
-	echo $modules | xargs /sbin/modinfo-25 \
+	echo $modules | xargs /sbin/modinfo \
 	| perl -lne 'print "$name\t$1" if $name && /^description:\s*(.*)/; $name = $1 if m!^filename:\s*(.*)\.k?o!; $name =~ s!.*/!!' > modules.description
 	popd
 done

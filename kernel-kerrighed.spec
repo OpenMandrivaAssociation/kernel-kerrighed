@@ -205,7 +205,7 @@ Patch203: 004_kerrighed.bz2
 %endif
 %define requires4 sysfsutils module-init-tools >= 0.9.15
 
-%define kprovides kernel = %{tar_ver}, alsa, kernel-kerrighed = %{kerrighed_version}
+%define kprovides kernel = %{tar_ver}, alsa, kernel-kerrighed-krgversion = %{kerrighed_version}
 
 BuildRoot: 	%{_tmppath}/%{name}-%{kversion}-build
 Autoreqprov: 	no
@@ -429,7 +429,7 @@ IBM OpenPower series systems.
 %package -n %{kname}-source-%{buildrel}
 Version:  %{fakever}
 Release:  %{fakerel}
-Provides: %{kname}-source, kernel-source
+Provides: %{kname}-source, kernel-source, kernel-kerrighed-source-krgversion = %{kerrighed_version}
 Requires: glibc-devel, ncurses-devel, make, gcc, perl
 Summary:  The source code for the Linux kernel with Kerrighed
 Group:    Development/Kernel

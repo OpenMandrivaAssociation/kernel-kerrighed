@@ -1215,8 +1215,10 @@ exit 0
 %files -n %{kname}-devel-latest
 %defattr(-,root,root)
 
+%if %build_smp
 %files -n %{kname}-smp-devel-latest
 %defattr(-,root,root)
+%endif
 %endif
 
 %if %build_doc

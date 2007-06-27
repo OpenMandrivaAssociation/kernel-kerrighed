@@ -185,7 +185,7 @@ Patch203: 004_kerrighed.bz2
 %define requires3 bootloader-utils >= 1.9
 %define requires4 sysfsutils module-init-tools >= 0.9.15
 
-%define kprovides kernel = %{tar_ver}, alsa, kernel-kerrighed-krgversion = %{kerrighed_version}
+%define kprovides kernel = %{tar_ver}, alsa, kernel-kerrighed-krgversion = %{kerrighed_version}-%{rpmrel}
 
 BuildRoot: 	%{_tmppath}/%{name}-%{kversion}-build-%{_arch}
 Autoreqprov: 	no
@@ -262,7 +262,7 @@ Version:  %{fakever}
 Release:  %{fakerel}
 Provides: %{kname}-source, kernel-source = %{kverrel}, kernel-devel = %{kverrel}
 Provides: %{kname}-source-%{kernelversion}.%{patchlevel}
-Provides: kernel-kerrighed-source-krgversion = %{kerrighed_version}
+Provides: kernel-kerrighed-source-krgversion = %{kerrighed_version}-%{rpmrel}
 Requires: glibc-devel, ncurses-devel, make, gcc, perl
 Summary:  The source code for the Linux kernel
 Group:    System/Cluster

@@ -131,7 +131,8 @@ Version:        %{kversion}
 Release:        %{rpmrel}
 License: 	GPL
 Group: 		System/Cluster
-ExclusiveArch: 	%{ix86} x86_64 sparc64
+#ExclusiveArch: 	%{ix86} x86_64 sparc64
+ExclusiveArch: 	%{ix86}
 ExclusiveOS: 	Linux
 URL: 		http://www.kernel.org/
 

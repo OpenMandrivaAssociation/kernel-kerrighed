@@ -21,15 +21,15 @@
 %define patchlevel	6
 %define sublevel	20
 
-%define kerrighed_version 2.1.0
+%define kerrighed_version 2.1.1
 
 # kernel Makefile extraversion is substituted by 
 # kpatch/kstable wich are either 0 (empty), rc (kpatch) or stable release (kstable)
 %define kpatch		0
-%define kstable		13
+%define kstable		16
 
 # this is the releaseversion
-%define mdvrelease 	2
+%define mdvrelease 	1
 
 # This is only to make life easier for people that creates derivated kernels
 # a.k.a name it kernel-tmb :)

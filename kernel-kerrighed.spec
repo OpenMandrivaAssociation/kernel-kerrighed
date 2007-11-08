@@ -682,7 +682,7 @@ CreateKernel up
 
 # We don't make to repeat the depend code at the install phase
 %if %build_source
-PrepareKernel "" %{buildrpmrel}custom
+PrepareKernel "" %{buildrpmrel}
 # From > 2.6.13 prepare-all is deprecated and relies on include/linux/autoconf
 # To have modpost and others scripts, one has to use the target scripts
 %smake -s prepare

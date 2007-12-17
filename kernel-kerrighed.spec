@@ -188,7 +188,6 @@ Patch203: 004_kerrighed.bz2
 
 %define kprovides kernel = %{tar_ver}, alsa, kernel-kerrighed-krgversion = %{kerrighed_version}-%{rpmrel}
 
-BuildRoot: 	%{_tmppath}/%{name}-%{kversion}-build-%{_arch}
 Autoreqprov: 	no
 BuildRequires: 	gcc module-init-tools >= 0.9.15
 

@@ -171,6 +171,9 @@ Patch1:         ftp://ftp.kernel.org/pub/linux/kernel/v%{kernelversion}.%{patchl
 Source10:       ftp://ftp.kernel.org/pub/linux/kernel/v%{kernelversion}.%{patchlevel}/patch-%{kversion}.bz2.sign
 %endif
 
+Patch50:  get_user_pages-fix.patch
+Patch51:  splice-fix.patch
+
 # Add squashfs support
 Patch100: squashfs3.3-patch
 # Add unionfs support
@@ -490,6 +493,9 @@ pushd %src_dir
 %if %kstable
 %patch1 -p1
 %endif
+
+%patch50 -p1
+%patch51 -p1
 
 %patch100 -p1
 %patch300 -p1

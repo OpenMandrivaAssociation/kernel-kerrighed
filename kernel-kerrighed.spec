@@ -21,12 +21,12 @@
 %define patchlevel	6
 %define sublevel	20
 
-%define kerrighed_version 2.1.1
+%define kerrighed_version 2.2.0
 
 # kernel Makefile extraversion is substituted by 
 # kpatch/kstable wich are either 0 (empty), rc (kpatch) or stable release (kstable)
 %define kpatch		0
-%define kstable		16
+%define kstable		0
 
 # this is the releaseversion
 %define mdvrelease 	1
@@ -170,6 +170,11 @@ Source10:       ftp://ftp.kernel.org/pub/linux/kernel/v%{kernelversion}.%{patchl
 Patch1:         ftp://ftp.kernel.org/pub/linux/kernel/v%{kernelversion}.%{patchlevel}/patch-%{kversion}.bz2
 Source10:       ftp://ftp.kernel.org/pub/linux/kernel/v%{kernelversion}.%{patchlevel}/patch-%{kversion}.bz2.sign
 %endif
+
+# Add squashfs support
+Patch100: squashfs3.3-patch
+# Add unionfs support
+Patch300: unionfs-2.1.9_for_2.6.20.21.diff.bz2
 
 # kerrighed patches
 Patch200: 001_kdb-v4.4-2.6.20-common-1.bz2
@@ -485,6 +490,9 @@ pushd %src_dir
 %if %kstable
 %patch1 -p1
 %endif
+
+%patch100 -p1
+%patch300 -p1
 
 # kerrighed patches
 %patch200 -p1

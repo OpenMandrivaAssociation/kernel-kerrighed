@@ -127,7 +127,8 @@ See http://www.kerrighed.org/ for more information about Kerrighed.
 # src.rpm description
 Summary: 	The Linux kernel (the core of the Linux operating system)
 Name:           %{kname}
-Version:        %{kversion}
+Version:        %{kerrighed_version}
+Epoch:		1
 Release:        %{rpmrel}
 License: 	GPL
 Group: 		System/Cluster

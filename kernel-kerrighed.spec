@@ -628,6 +628,12 @@ SaveDevel() {
 
 	# fix permissions
 	chmod -R a+rX $DevelRoot
+	
+	# Clean the scripts tree
+	pushd $DevelRoot >/dev/null
+		%smake -s clean
+	popd >/dev/null
+	
 }
 
 
@@ -702,6 +708,7 @@ PrepareKernel "" %{buildrpmrel}
 # To have modpost and others scripts, one has to use the target scripts
 %smake -s prepare
 %smake -s scripts
+%smake -s clean
 %endif
 
 

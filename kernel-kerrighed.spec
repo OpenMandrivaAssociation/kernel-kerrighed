@@ -21,7 +21,7 @@
 %define patchlevel	6
 %define sublevel	20
 
-%define kerrighed_version 2.2.1
+%define kerrighed_version 2.3.0
 
 # kernel Makefile extraversion is substituted by 
 # kpatch/kstable wich are either 0 (empty), rc (kpatch) or stable release (kstable)

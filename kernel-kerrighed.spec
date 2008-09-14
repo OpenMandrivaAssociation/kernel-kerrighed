@@ -176,7 +176,7 @@ Patch50:  get_user_pages-fix.patch
 Patch51:  splice-fix.patch
 
 # Add squashfs support
-Patch100: squashfs3.3-patch
+Patch100: squashfs3.4-patch
 
 # Add unionfs support
 Patch150: unionfs-2.1.9_for_2.6.20.21.diff.bz2

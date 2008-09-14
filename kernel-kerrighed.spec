@@ -175,6 +175,9 @@ Source10:       ftp://ftp.kernel.org/pub/linux/kernel/v%{kernelversion}.%{patchl
 Patch50:  get_user_pages-fix.patch
 Patch51:  splice-fix.patch
 
+# gcc 4.3 buildfix
+Patch60: prevent-loop-in-timespec_add_ns-from-being-optimised-away.patch
+
 # Add squashfs support
 Patch100: squashfs3.4-patch
 
@@ -186,6 +189,7 @@ Patch200: 001_kdb-v4.4-2.6.20-common-1.bz2
 Patch201: 002_kdb-v4.4-2.6.20-i386-1.bz2
 Patch202: 003_kdb-v4.4-2.6.20-x86_64-1.bz2
 Patch203: 004_kerrighed.bz2
+
 
 #END
 ####################################################################
@@ -502,6 +506,8 @@ pushd %src_dir
 
 %patch50 -p1
 %patch51 -p1
+
+%patch60 -p1
 
 %patch100 -p1
 %patch150 -p1

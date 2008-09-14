@@ -179,7 +179,7 @@ Patch51:  splice-fix.patch
 Patch100: squashfs3.4-patch
 
 # Add unionfs support
-Patch150: unionfs-2.1.9_for_2.6.20.21.diff.bz2
+Patch150: unionfs-2.4_for_2.6.20.21.diff.gz
 
 # kerrighed patches
 Patch200: 001_kdb-v4.4-2.6.20-common-1.bz2

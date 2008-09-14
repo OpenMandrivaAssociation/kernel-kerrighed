@@ -175,11 +175,12 @@ Source10:       ftp://ftp.kernel.org/pub/linux/kernel/v%{kernelversion}.%{patchl
 Patch50:  get_user_pages-fix.patch
 Patch51:  splice-fix.patch
 
-# gcc 4.3 buildfix
+# gcc 4.3 buildfixes
 Patch60:  prevent-loop-in-timespec_add_ns-from-being-optimised-away.patch
+Patch61:  export-symbol_proxy_pda-for-gcc.patch
 
 # fix missing PAGE_MAX declaration
-Patch61:  fix-missing-PAGE_MAX-declaration.patch
+Patch70:  fix-missing-PAGE_MAX-declaration.patch
 
 # Add squashfs support
 Patch100: squashfs3.4-patch
@@ -512,6 +513,8 @@ pushd %src_dir
 
 %patch60 -p1
 %patch61 -p1
+
+%patch70 -p1
 
 %patch100 -p1
 %patch150 -p1

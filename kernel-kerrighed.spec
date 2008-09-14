@@ -25,7 +25,7 @@
 
 # kernel Makefile extraversion is substituted by 
 # kpatch/kstable wich are either 0 (empty), rc (kpatch) or stable release (kstable)
-%define kpatch		0
+%define kpatch		21
 %define kstable		0
 
 # this is the releaseversion
@@ -44,7 +44,7 @@
 
 # theese two never change, they are used to fool rpm/urpmi/smart
 %define fakever		1
-%define fakerel		%mkrel 3
+%define fakerel		%mkrel 1
 
 # When we are using a pre/rc patch, the tarball is a sublevel -1
 %if %kpatch

@@ -177,8 +177,9 @@ Patch51:  splice-fix.patch
 
 # Add squashfs support
 Patch100: squashfs3.3-patch
+
 # Add unionfs support
-Patch300: unionfs-2.1.9_for_2.6.20.21.diff.bz2
+Patch150: unionfs-2.1.9_for_2.6.20.21.diff.bz2
 
 # kerrighed patches
 Patch200: 001_kdb-v4.4-2.6.20-common-1.bz2
@@ -211,7 +212,7 @@ Source package to build the Linux kernel.
 #
 # kernel: UP kernel
 #
-
+%if %build_up
 %package -n %{kname}-%{buildrel}
 Version:	%{fakever}
 Release:	%{fakerel}
@@ -233,13 +234,13 @@ For instructions for update, see:
 http://www.mandriva.com/en/security/kernelupdate
 
 %{kerrighed_notice}
-
+%endif
 
 
 #
 # kernel-smp: Symmetric MultiProcessing kernel
 #
-
+%if %build_smp
 %package -n %{kname}-smp-%{buildrel}
 Version:  %{fakever}
 Release:  %{fakerel}
@@ -260,13 +261,13 @@ For instructions for update, see:
 http://www.mandriva.com/en/security/kernelupdate
 
 %{kerrighed_notice}
-
+%endif
 
 
 #
 # kernel-source: kernel sources
 #
-
+%if %build_source
 %package -n %{kname}-source-%{buildrel}
 Version:  %{fakever}
 Release:  %{fakerel}
@@ -290,13 +291,14 @@ For instructions for update, see:
 http://www.mandriva.com/en/security/kernelupdate
 
 %{kerrighed_notice}
-
+%endif
 
 
 # 
 # kernel-devel-up: stripped kernel sources 
 #
-
+%if %build_devel
+%if %build_up
 %package -n %{kname}-devel-%{buildrel}
 Version:  %{fakever}
 Release:  %{fakerel}
@@ -314,13 +316,13 @@ If you want to build your own kernel, you need to install the full
 %{kname}-source-%{buildrel} rpm.
 
 %{kerrighed_notice}
-
+%endif
 
 
 # 
 # kernel-devel-smp: stripped kernel sources 
 #
-
+%if %build_smp
 %package -n %{kname}-smp-devel-%{buildrel}
 Version:  %{fakever}
 Release:  %{fakerel}
@@ -338,13 +340,14 @@ If you want to build your own kernel, you need to install the full
 %{kname}-source-%{buildrel} rpm.
 
 %{kerrighed_notice}
-
+%endif
+%endif
 
 
 #
 # kernel-doc: documentation for the Linux kernel
 #
-
+%if %build_doc
 %package -n %{kname}-doc-%{buildrel}
 Version:  %{fakever}
 Release:  %{fakerel}
@@ -362,13 +365,13 @@ For instructions for update, see:
 http://www.mandriva.com/en/security/kernelupdate
 
 %{kerrighed_notice}
-
+%endif
 
 
 #
 # kernel-latest: virtual rpm
 #
-
+%if %build_up
 %package -n %{kname}-latest
 Version:        %{kversion}
 Release:        %{rpmrel}
@@ -381,13 +384,13 @@ This package is a virtual rpm that aims to make sure you always have the
 latest %{kname} installed...
 
 %{kerrighed_notice}
-
+%endif
 
 
 #
 # kernel-smp-latest: virtual rpm
 #
-
+%if %build_smp
 %package -n %{kname}-smp-latest
 Version:        %{kversion}
 Release:        %{rpmrel}
@@ -400,13 +403,13 @@ This package is a virtual rpm that aims to make sure you always have the
 latest %{kname}-smp installed...
 
 %{kerrighed_notice}
-
+%endif
 
 
 #
 # kernel-source-latest: virtual rpm
 #
-
+%if %build_source
 %package -n %{kname}-source-latest
 Version:        %{kversion}
 Release:        %{rpmrel}
@@ -419,13 +422,14 @@ This package is a virtual rpm that aims to make sure you always have the
 latest %{kname}-source installed...
 
 %{kerrighed_notice}
-
+%endif
 
 
 #
 # kernel-devel-latest: virtual rpm
 #
-
+%if %build_devel
+%if %build_up
 %package -n %{kname}-devel-latest
 Version:        %{kversion}
 Release:        %{rpmrel}
@@ -439,13 +443,13 @@ This package is a virtual rpm that aims to make sure you always have the
 latest %{kname}-devel installed...
 
 %{kerrighed_notice}
-
+%endif
 
 
 #
 # kernel-smp-devel-latest: virtual rpm
 #
-
+%if %build_smp
 %package -n %{kname}-smp-devel-latest
 Version:        %{kversion}
 Release:        %{rpmrel}
@@ -459,13 +463,14 @@ This package is a virtual rpm that aims to make sure you always have the
 latest %{kname}-smp-devel installed...
 
 %{kerrighed_notice}
-
+%endif
+%endif
 
 
 #
 # kernel-doc-latest: virtual rpm
 #
-
+%if %build_doc
 %package -n %{kname}-doc-latest
 Version:        %{kversion}
 Release:        %{rpmrel}
@@ -478,7 +483,7 @@ This package is a virtual rpm that aims to make sure you always have the
 latest %{kname}-doc installed...
 
 %{kerrighed_notice}
-
+%endif
 
 
 #
@@ -499,7 +504,7 @@ pushd %src_dir
 %patch51 -p1
 
 %patch100 -p1
-%patch300 -p1
+%patch150 -p1
 
 # kerrighed patches
 %patch200 -p1
@@ -869,6 +874,7 @@ rm -rf %{buildroot}
 ###
 
 ### UP kernel
+%if %build_up
 %preun -n %{kname}-%{buildrel}
 /sbin/installkernel -R %{buildrel}
 if [ -L /lib/modules/%{buildrel}/build ]; then
@@ -888,10 +894,11 @@ fi
 
 %postun -n %{kname}-%{buildrel}
 /sbin/kernel_remove_initrd %{buildrel}
-
+%endif
 
 
 ### SMP kernel
+%if %build_smp
 %preun -n %{kname}-smp-%{buildrel}
 /sbin/installkernel -R %{buildrel}smp
 if [ -L /lib/modules/%{buildrel}smp/build ]; then
@@ -911,10 +918,12 @@ fi
 
 %postun -n %{kname}-smp-%{buildrel}
 /sbin/kernel_remove_initrd %{buildrel}smp
-
+%endif
 
 
 ### kernel-devel
+%if %build_devel
+%if %build_up
 %post -n %{kname}-devel-%{buildrel}
 # place /build and /source symlinks in place.
 if [ -d /lib/modules/%{buildrel} ]; then
@@ -931,10 +940,11 @@ if [ -L /lib/modules/%{buildrel}/source ]; then
     rm -f /lib/modules/%{buildrel}/source
 fi
 exit 0
-
+%endif
 
 
 ### kernel-smp-devel
+%if %build_smp
 %post -n %{kname}-smp-devel-%{buildrel}
 # place /build and /source symlinks in place.
 if [ -d /lib/modules/%{buildrel}smp ]; then
@@ -951,10 +961,12 @@ if [ -L /lib/modules/%{buildrel}smp/source ]; then
     rm -f /lib/modules/%{buildrel}smp/source
 fi
 exit 0
-
+%endif
+%endif
 
 
 ### kernel-source
+%if %build_source
 %post -n %{kname}-source-%{buildrel}
 for i in /lib/modules/%{buildrel}*; do
 	if [ -d $i ]; then
@@ -971,6 +983,7 @@ for i in /lib/modules/%{buildrel}/{build,source}; do
 	fi
 done
 exit 0
+%endif
 												
 
 ###

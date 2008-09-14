@@ -176,7 +176,10 @@ Patch50:  get_user_pages-fix.patch
 Patch51:  splice-fix.patch
 
 # gcc 4.3 buildfix
-Patch60: prevent-loop-in-timespec_add_ns-from-being-optimised-away.patch
+Patch60:  prevent-loop-in-timespec_add_ns-from-being-optimised-away.patch
+
+# fix missing PAGE_MAX declaration
+Patch61:  fix-missing-PAGE_MAX-declaration.patch
 
 # Add squashfs support
 Patch100: squashfs3.4-patch
@@ -508,6 +511,7 @@ pushd %src_dir
 %patch51 -p1
 
 %patch60 -p1
+%patch61 -p1
 
 %patch100 -p1
 %patch150 -p1

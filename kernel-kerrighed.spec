@@ -21,7 +21,7 @@
 %define patchlevel	6
 %define sublevel	20
 
-%define kerrighed_version 2.3.0
+%define kerrighed_version 2.4.3
 
 # kernel Makefile extraversion is substituted by 
 # kpatch/kstable wich are either 0 (empty), rc (kpatch) or stable release (kstable)
@@ -189,10 +189,7 @@ Patch100: squashfs3.4-patch
 Patch150: unionfs-2.4_for_2.6.20.21.diff.gz
 
 # kerrighed patches
-Patch200: 001_kdb-v4.4-2.6.20-common-1.bz2
-Patch201: 002_kdb-v4.4-2.6.20-i386-1.bz2
-Patch202: 003_kdb-v4.4-2.6.20-x86_64-1.bz2
-Patch203: 004_kerrighed.bz2
+Patch600: patch_krg_2.4.3.bz2
 
 
 #END
@@ -200,7 +197,7 @@ Patch203: 004_kerrighed.bz2
 
 # Defines for the things that are needed for all the kernels
 %define requires1 module-init-tools >= 3.0-%mkrel 9
-%define requires2 mkinitrd >= 3.4.43-%mkrel 12
+%define requires2 mkinitrd >= 3.4.43-%mkrel 12 initscripts >= 8.81-12.%mkrel 2
 %define requires3 bootloader-utils >= 1.9
 %define requires4 sysfsutils module-init-tools >= 0.9.15
 
@@ -520,10 +517,7 @@ pushd %src_dir
 %patch150 -p1
 
 # kerrighed patches
-%patch200 -p1
-%patch201 -p1
-%patch202 -p1
-%patch203 -p1
+%patch600 -p1
 
 popd
 # PATCH END

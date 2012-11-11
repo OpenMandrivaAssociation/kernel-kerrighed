@@ -1,0 +1,17 @@
+diff -Nurp linux-2.6.20/arch.orig/i386/kernel/i386_ksyms.c linux-2.6.20/arch/i386/kernel/i386_ksyms.c
+--- linux-2.6.20/arch.orig/i386/kernel/i386_ksyms.c	2007-02-04 20:44:54.000000000 +0200
++++ linux-2.6.20/arch/i386/kernel/i386_ksyms.c	2008-09-14 23:42:28.000000000 +0300
+@@ -28,3 +28,5 @@ EXPORT_SYMBOL(__read_lock_failed);
+ #endif
+ 
+ EXPORT_SYMBOL(csum_partial);
++
++EXPORT_SYMBOL(_proxy_pda);
+diff -Nurp linux-2.6.20/arch.orig/x86_64/kernel/x8664_ksyms.c linux-2.6.20/arch/x86_64/kernel/x8664_ksyms.c
+--- linux-2.6.20/arch.orig/x86_64/kernel/x8664_ksyms.c	2007-02-04 20:44:54.000000000 +0200
++++ linux-2.6.20/arch/x86_64/kernel/x8664_ksyms.c	2008-09-14 23:42:54.000000000 +0300
+@@ -58,3 +58,4 @@ EXPORT_SYMBOL(empty_zero_page);
+ EXPORT_SYMBOL(init_level4_pgt);
+ EXPORT_SYMBOL(load_gs_index);
+ 
++EXPORT_SYMBOL(_proxy_pda);

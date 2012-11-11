@@ -1,0 +1,7 @@
+sources:
+  "i386.config:"	e9a0717934b94dad78f845f24b6df88af8942048
+  "linux-2.6.20.tar.bz2:"	e730979adfb287528263e779c91284659672510d
+  "linux-2.6.20.tar.bz2.sign:"	4813d10a2b1388d0c6f9ce5b142eeb472f4c5bd0
+  "README.kernel-sources:"	a99423be3b915afdad9633b0fa4ab6af139ada36
+  "README.MandrivaLinux:"	d9fd584b29249abcfc126c8c1c857556ed8fef38
+  "x86_64.config:"	37d42c3edcf649a333d5a014205171c21935abbf

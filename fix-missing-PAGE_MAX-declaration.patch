@@ -1,0 +1,23 @@
+--- linux-2.6.20/scripts/mod/sumversion.c	2007-02-04 20:44:54.000000000 +0200
++++ linux-2.6.20/scripts.new/mod/sumversion.c	2008-07-14 00:51:29.000000000 +0300
+@@ -7,6 +7,7 @@
+ #include <ctype.h>
+ #include <errno.h>
+ #include <string.h>
++#include <limits.h>
+ #include "modpost.h"
+ 
+ /*
+@@ -397,10 +398,9 @@ void get_src_version(const char *modname
+ 		(int) strlen(basename) - 2, basename);
+ 
+ 	file = grab_file(filelist, &len);
+-	if (!file) {
+-		warn("could not find versions for %s\n", filelist);
++	if (!file)
++		/* not a module or .mod file missing - ignore */
+ 		return;
+-	}
+ 
+ 	sources = strchr(file, '\n');
+ 	if (!sources) {

@@ -37,14 +37,14 @@
 
 %define rpmtag		%distsuffix
 %if %kpatch
-%define rpmrel		%mkrel 0.%{kpatch}.%{mdvrelease}
+%define rpmrel		0.%{kpatch.1}.%{mdvrelease}
 %else
-%define rpmrel		%mkrel %{mdvrelease}
+%define rpmrel		%{mdvrelease.1}
 %endif
 
 # theese two never change, they are used to fool rpm/urpmi/smart
 %define fakever		1
-%define fakerel		%mkrel 1
+%define fakerel		2
 
 # When we are using a pre/rc patch, the tarball is a sublevel -1
 %if %kpatch
@@ -196,8 +196,8 @@ Patch600: patch_krg_2.4.3.bz2
 ####################################################################
 
 # Defines for the things that are needed for all the kernels
-%define requires1 module-init-tools >= 3.0-%mkrel 9
-%define requires2 mkinitrd >= 3.4.43-%mkrel 12 initscripts >= 8.81-12.%mkrel 2
+%define requires1 module-init-tools >= 3.0-10
+%define requires2 mkinitrd >= 3.4.43-13 initscripts >= 8.81-12.3
 %define requires3 bootloader-utils >= 1.9
 %define requires4 sysfsutils module-init-tools >= 0.9.15
 
